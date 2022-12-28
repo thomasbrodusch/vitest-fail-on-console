@@ -18,8 +18,8 @@ jobs:
         run: yarn
       - name: Run linter 👁️
         run: yarn lint
-      #- name: Run tests 🧪
-      #  run: yarn test
+      - name: Run tests 🧪
+        run: yarn test
       - name: Build 🔧
         run: yarn build
       - name: Publish package to NPM 📦

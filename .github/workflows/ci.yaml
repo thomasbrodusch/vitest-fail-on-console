@@ -24,5 +24,5 @@ jobs:
       - name: Run linter 👁️
         run: yarn lint
 
-      #- name: Run tests 🧪
-      #  run: yarn test
+      - name: Run tests 🧪
+        run: yarn test
