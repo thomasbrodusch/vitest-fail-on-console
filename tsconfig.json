@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "lib": ["es2021"],
+    "module": "esnext",
+    "target": "es6",
+    "sourceMap": true,
+    "types": ["vitest/globals"],
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "moduleResolution": "node"
+  },
+  "include": ["src/**/*.ts", "tests/**/*.ts"],
+  "exclude": [
+    "node_modules"
+  ],
+}
