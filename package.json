@@ -1,0 +1,61 @@
+{
+  "name": "vitest-fail-on-console",
+  "version": "0.0.1",
+  "description": "Utility to make vitest tests fail when console.error() or console.warn() are used",
+  "main": "index.js",
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "build": "rollup -c",
+    "lint": "yarn eslint .",
+    "test": "vitest --config vitest.config.ts",
+    "release": "standard-version",
+    "release:minor": "standard-version --release-as minor",
+    "release:patch": "standard-version --release-as patch",
+    "release:major": "standard-version --release-as major"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thomasbrodusch/vitest-fail-on-console.git"
+  },
+  "keywords": [
+    "vitest",
+    "console",
+    "fail"
+  ],
+  "author": "Thomas Brodusch <brodusch.thomas@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "bugs": {
+    "url": "https://github.com/thomasbrodusch/vitest-fail-on-console/issues"
+  },
+  "homepage": "https://github.com/thomasbrodusch/vitest-fail-on-console#readme",
+  "devDependencies": {
+    "vitest": "^0.26.2",
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
+    "@rollup/plugin-typescript": "^10.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.47.0",
+    "@typescript-eslint/parser": "^5.47.0",
+    "eslint": "^8.30.0",
+    "husky": "^8.0.2",
+    "prettier": "2.8.1",
+    "rollup": "^3.7.5",
+    "rollup-plugin-dts": "^5.1.0",
+    "rollup-plugin-esbuild": "^5.0.0",
+    "standard-version": "^9.5.0",
+    "tslib": "^2.4.1",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "chalk": "^5.2.0"
+  }
+}
