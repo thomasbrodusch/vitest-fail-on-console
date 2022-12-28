@@ -1,0 +1,28 @@
+name: CI
+run-name: CI triggered
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+jobs:
+  ci-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Install dependencies 📦
+        run: yarn
+
+      - name: Run commitlint 📝
+        run: git log -1 --pretty=format:"%s" | yarn commitlint --verbose
+
+      - name: Run linter 👁️
+        run: yarn lint
+
+      #- name: Run tests 🧪
+      #  run: yarn test
