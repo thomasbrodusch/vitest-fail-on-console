@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.1 (2022-12-30)
+
+
+### Bug Fixes
+
+* remove vitest import in src to avoid vitest global error mismatch ([89a0bb4](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/89a0bb47205946b4319a88e2597b464d470a1d1e))
+
+
 ## [0.1.0](https://github.com/thomasbrodusch/vitest-fail-on-console/compare/v0.0.2...v0.1.0) (2022-12-30)
 
 
