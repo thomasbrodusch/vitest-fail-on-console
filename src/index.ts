@@ -1,6 +1,5 @@
 import * as util from 'util';
 import chalk from 'chalk';
-import { beforeEach, afterEach, expect } from 'vitest';
 
 const defaultErrorMessage = (methodName, bold) =>
     `vitest-fail-on-console > Expected test not to call ${bold(
