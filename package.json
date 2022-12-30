@@ -1,6 +1,6 @@
 {
   "name": "vitest-fail-on-console",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Utility to make vitest tests fail when console.error() or console.warn() are used",
   "main": "index.js",
   "scripts": {
@@ -19,8 +19,9 @@
   },
   "keywords": [
     "vitest",
-    "console",
-    "fail"
+    "testing",
+    "utility",
+    "console-warning"
   ],
   "author": "Thomas Brodusch <brodusch.thomas@gmail.com>",
   "license": "MIT",
