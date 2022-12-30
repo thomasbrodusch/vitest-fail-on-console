@@ -13,7 +13,7 @@ To prevent this, we want to fail each test that is logging to the console. We al
 
 This is what this utility is doing.
 
-#TODO add giff
+![Example with console.error](./examples/example.png "Example with console.error")
 
 ## Install
 
