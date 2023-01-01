@@ -1,35 +1,55 @@
 import * as util from 'util';
 import chalk from 'chalk';
+import {
+    ConsoleCallStacks,
+    ConsoleMethod,
+    VitestFailOnConsoleFunction,
+} from './types';
 
-const defaultErrorMessage = (methodName, bold) =>
-    `vitest-fail-on-console > Expected test not to call ${bold(
+const LINE_RETURN = '\n';
+const defaultErrorMessage = (methodName: ConsoleMethod) =>
+    `vitest-fail-on-console > Expected test not to call ${chalk.bold(
         `console.${methodName}()`
     )}.
     If the ${methodName} is expected, test for it explicitly by mocking it out using: 
-    ${bold('vi.spyOn')}(console, '${methodName}').mockImplementation() 
+    ${chalk.bold(
+        'vi.spyOn'
+    )}(console, '${methodName}').mockImplementation(() => {}) 
     and test that the warning occurs.`;
 
-const init = ({
-    errorMessage = defaultErrorMessage,
-    shouldFailOnAssert = false,
-    shouldFailOnDebug = false,
-    shouldFailOnError = true,
-    shouldFailOnInfo = false,
-    shouldFailOnLog = false,
-    shouldFailOnWarn = true,
-    skipTest = undefined,
-    silenceMessage = undefined,
-} = {}) => {
+const init = (
+    {
+        errorMessage = defaultErrorMessage,
+        shouldFailOnAssert = false,
+        shouldFailOnDebug = false,
+        shouldFailOnError = true,
+        shouldFailOnInfo = false,
+        shouldFailOnLog = false,
+        shouldFailOnWarn = true,
+        skipTest = undefined,
+        silenceMessage = undefined,
+    }: VitestFailOnConsoleFunction = {
+        errorMessage: defaultErrorMessage,
+        shouldFailOnAssert: false,
+        shouldFailOnDebug: false,
+        shouldFailOnError: true,
+        shouldFailOnInfo: false,
+        shouldFailOnLog: false,
+        shouldFailOnWarn: true,
+        silenceMessage: undefined,
+        skipTest: undefined,
+    }
+) => {
     const flushUnexpectedConsoleCalls = (
-        methodName,
-        unexpectedConsoleCallStacks
+        methodName: ConsoleMethod,
+        unexpectedConsoleCallStacks: ConsoleCallStacks
     ) => {
-        if (unexpectedConsoleCallStacks.length > 0) {
+        if (unexpectedConsoleCallStacks.length) {
             const messages = unexpectedConsoleCallStacks.map(
                 ([stack, message]) => {
-                    const stackLines = stack.split('\n');
+                    const stackLines = stack.split(LINE_RETURN);
                     return (
-                        `${chalk.red(message)}\n` +
+                        `${chalk.red(message)}${LINE_RETURN}` +
                         `${stackLines
                             .map((line, index) => {
                                 if (index === stackLines.length - 1) {
@@ -37,38 +57,47 @@ const init = ({
                                 }
                                 return chalk.gray(line);
                             })
-                            .join('\n')}`
+                            .join(LINE_RETURN)}`
                     );
                 }
             );
 
-            const message = errorMessage(methodName, chalk.bold);
-            throw new Error(`${message}\n\n${messages.join('\n\n')}`);
+            const message = errorMessage(methodName);
+            const doubleLineReturn = `${LINE_RETURN}${LINE_RETURN}`;
+            throw new Error(
+                `${message}${doubleLineReturn}${messages.join(
+                    doubleLineReturn
+                )}`
+            );
         }
     };
 
-    const patchConsoleMethod = (methodName) => {
-        const unexpectedConsoleCallStacks = [];
+    const patchConsoleMethod = (methodName: ConsoleMethod) => {
+        const unexpectedConsoleCallStacks: ConsoleCallStacks = [];
 
-        const captureMessage = (format, ...args) => {
+        const captureMessage = (format: unknown, ...args) => {
             const message = util.format(format, ...args);
             if (silenceMessage && silenceMessage(message, methodName)) {
                 return;
             }
 
-            // Capture the call stack now so we can warn about it later.
+            // Capture the call stack now, so we can warn about it later.
             // The call stack has helpful information for the test author.
             // Don't throw yet though b'c it might be accidentally caught and suppressed.
             const { stack } = new Error();
             if (stack) {
                 unexpectedConsoleCallStacks.push([
-                    stack.substr(stack.indexOf('\n') + 1),
+                    stack.slice(stack.indexOf(LINE_RETURN) + 1),
                     message,
                 ]);
             }
         };
 
-        const newAssertMethod = (assertion, format, ...args) => {
+        const newAssertMethod = (
+            assertion: boolean,
+            format: unknown,
+            ...args
+        ) => {
             if (assertion) {
                 return;
             }
@@ -76,22 +105,21 @@ const init = ({
         };
 
         const newMethod =
-            methodName === 'assert' ? newAssertMethod : captureMessage;
+            methodName === ConsoleMethod.Assert
+                ? newAssertMethod
+                : captureMessage;
 
         const originalMethod = console[methodName];
 
-        const canSkipTest = () => {
+        const isTestSkipped = (): boolean => {
             const currentTestState = expect.getState();
             const testName = currentTestState.currentTestName;
             const testPath = currentTestState.testPath;
-            return !!(skipTest && skipTest({ testName, testPath }));
+            return !!skipTest?.({ testName, testPath });
         };
 
-        let shouldSkipTest;
-
         beforeEach(() => {
-            shouldSkipTest = canSkipTest();
-            if (shouldSkipTest) {
+            if (isTestSkipped()) {
                 return;
             }
             console[methodName] = newMethod; // eslint-disable-line no-console
@@ -99,7 +127,7 @@ const init = ({
         });
 
         afterEach(() => {
-            if (shouldSkipTest) {
+            if (isTestSkipped()) {
                 return;
             }
             flushUnexpectedConsoleCalls(
@@ -110,24 +138,18 @@ const init = ({
         });
     };
 
-    if (shouldFailOnAssert) {
-        patchConsoleMethod('assert');
-    }
-    if (shouldFailOnDebug) {
-        patchConsoleMethod('debug');
-    }
-    if (shouldFailOnError) {
-        patchConsoleMethod('error');
-    }
-    if (shouldFailOnInfo) {
-        patchConsoleMethod('info');
-    }
-    if (shouldFailOnLog) {
-        patchConsoleMethod('log');
-    }
-    if (shouldFailOnWarn) {
-        patchConsoleMethod('warn');
-    }
+    [
+        [shouldFailOnAssert, ConsoleMethod.Assert],
+        [shouldFailOnDebug, ConsoleMethod.Debug],
+        [shouldFailOnError, ConsoleMethod.Error],
+        [shouldFailOnInfo, ConsoleMethod.Info],
+        [shouldFailOnLog, ConsoleMethod.Log],
+        [shouldFailOnWarn, ConsoleMethod.Warn],
+    ].forEach(([condition, methodName]: [boolean, ConsoleMethod]) => {
+        if (condition) {
+            patchConsoleMethod(methodName);
+        }
+    });
 };
 
 export default init;
