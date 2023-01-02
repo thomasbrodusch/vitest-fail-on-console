@@ -29,7 +29,7 @@ npm install -D vitest-fail-on-console
 
 ## How to use
 
-In a file used in the `setupFiles` option of Vitest's config file (`vi.config.ts`), add this code:
+In a file used in the `setupFiles` option of Vitest's config file (`vitest.config.ts`), add this code:
 
 ```ts
 // tests/setup.ts
