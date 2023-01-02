@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 0.2.0 (2023-01-02)
+
+
+### Features
+
+* add @/types ([d2a8603](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/d2a8603e9740f0aadea935c866ee5dc0be2427b9))
+* update core ([d9938c6](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/d9938c643d0e627b74f40c91c6237300a81b387c))
+
+### Documentation
+
+* update README.md ([224df0e](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/224df0e2b41837016adb2a92fba3197171e2c2d1))
+
 ### 0.1.1 (2022-12-30)
 
 
