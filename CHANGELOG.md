@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.2.3 (2023-01-09)
+
+
+### Bug Fixes
+
+* [#1](https://github.com/thomasbrodusch/vitest-fail-on-console/issues/1) update package.json to add types definition source ([28a61de](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/28a61de151e8b2aec74bbbd5ad0752e452b6dd97))
+
 ### 0.2.2 (2023-01-09)
 
 
