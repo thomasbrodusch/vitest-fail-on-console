@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.2.2 (2023-01-09)
+
+
+### Bug Fixes
+
+* [#1](https://github.com/thomasbrodusch/vitest-fail-on-console/issues/1) TS types definition file index.d.ts ([b609049](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/b609049f8bcea3c0bf0fa37d855f1b05dfebd125))
+
 ### 0.2.1 (2023-01-09)
 
 
