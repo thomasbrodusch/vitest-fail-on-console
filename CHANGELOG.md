@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.2.4 (2023-01-09)
+
+
+### Bug Fixes
+
+* use conditional args on main function type ([d78f604](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/d78f60497cdfa0f1103de5188f495aa7904ff1f8))
+
+
 ### 0.2.3 (2023-01-09)
 
 
