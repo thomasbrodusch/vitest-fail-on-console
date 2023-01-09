@@ -1,10 +1,10 @@
-import typescript from "@rollup/plugin-typescript";
-import esbuild from "rollup-plugin-esbuild";
-import dts from "rollup-plugin-dts";
+import typescript from '@rollup/plugin-typescript';
+import esbuild from 'rollup-plugin-esbuild';
+import dts from 'rollup-plugin-dts';
 
 const outputOptions = {
     sourcemap: true,
-    exports: "named",
+    exports: 'named',
     banner: `/*
    * Vitest-fail-on-console 
    * port of famous jest-fail-on-console to Vitest
@@ -20,12 +20,12 @@ const config = [
         output: [
             {
                 dir: `dist/cjs`,
-                format: "cjs",
+                format: 'cjs',
                 ...outputOptions,
             },
             {
                 dir: `dist/esm`,
-                format: "es",
+                format: 'es',
                 ...outputOptions,
             },
         ],
@@ -34,8 +34,8 @@ const config = [
         input: `src/index.ts`,
         plugins: [dts()],
         output: {
-            file: `dist/vitest-fail-on-console.d.ts`,
-            format: "es",
+            file: `dist/index.d.ts`,
+            format: 'es',
         },
     },
 ];
