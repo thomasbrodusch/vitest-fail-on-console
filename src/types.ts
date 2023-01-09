@@ -25,12 +25,12 @@ export enum ConsoleMethod {
 export type ConsoleCallStacks = [string, string][];
 
 export type VitestFailOnConsoleFunction = {
-    shouldFailOnAssert: boolean;
-    shouldFailOnDebug: boolean;
-    shouldFailOnError: boolean;
-    shouldFailOnInfo: boolean;
-    shouldFailOnLog: boolean;
-    shouldFailOnWarn: boolean;
+    shouldFailOnAssert?: boolean;
+    shouldFailOnDebug?: boolean;
+    shouldFailOnError?: boolean;
+    shouldFailOnInfo?: boolean;
+    shouldFailOnLog?: boolean;
+    shouldFailOnWarn?: boolean;
     skipTest?: SkipTestFunction;
     errorMessage?: ErrorMessageFunction;
     silenceMessage?: SilenceMessageFunction;
