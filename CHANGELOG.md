@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 0.3.0 (2023-01-11)
+
+
+### Features
+
+* migrate build Rollup to Vite ([a94451f](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/a94451f2dd21a29d51b4f3617e4b6bb96d35516f))
+* update highlight on message (vi.spyOn) ([eb15485](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/eb1548512d0fe3f01c49c92024e056b2987928db))
+
+
 ### 0.2.4 (2023-01-09)
 
 
