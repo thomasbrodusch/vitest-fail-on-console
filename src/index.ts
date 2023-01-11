@@ -13,8 +13,8 @@ const defaultErrorMessage = (methodName: ConsoleMethod) =>
     )}.
     If the ${methodName} is expected, test for it explicitly by mocking it out using: 
     ${chalk.bold(
-        'vi.spyOn'
-    )}(console, '${methodName}').mockImplementation(() => {}) 
+        `vi.spyOn(console, '${methodName}').mockImplementation(() => {}) `
+    )}
     and test that the warning occurs.`;
 
 const init = (
