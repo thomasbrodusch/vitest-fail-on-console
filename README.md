@@ -15,6 +15,17 @@ This is what this utility is doing.
 
 ![Example with console.error](./examples/example.png "Example with console.error")
 
+## How this project is different from `jest-fail-on-console`?
+
+There is several changes between `jest-fail-on-console` and `vitest-fail-on-console`:
+
+- TypeScript typed functions, arguments, and variables - [see types.ts](./src/types.ts)
+- refactoring of the whole codebase
+- refactoring of test/specs
+
+This repository has been developed and publish to keep and maintain a Vitest version 
+of the original idea behind `jest-fail-on-console` credited at the bottom of this file.
+
 ## Install
 
 ```shell
@@ -180,7 +191,6 @@ failOnConsole({
 ## License
 
 [MIT](https://github.com/thomasbroduch/vitest-fail-on-console/blob/develop/LICENSE)
-
 
 ## Credits
 
