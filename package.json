@@ -1,6 +1,6 @@
 {
   "name": "vitest-fail-on-console",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Utility to make vitest tests fail when console.error() or console.warn() are used",
   "scripts": {
     "prebuild": "rm -rf dist",
