@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/thomasbrodusch/vitest-fail-on-console/compare/v0.3.1...v0.4.0) (2023-05-06)
+
+
+### Bug Fixes
+
+* update index.ts to work without global option set to true ([dad5380](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/dad53805d0b80ba9c3cb92d5162040be3fcfaa12))
+
 ### [0.3.1](https://github.com/thomasbrodusch/vitest-fail-on-console/compare/v0.3.0...v0.3.1) (2023-03-18)
 
 ## 0.3.0 (2023-01-11)
