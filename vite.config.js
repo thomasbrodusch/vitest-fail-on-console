@@ -1,6 +1,8 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
+import nodePolyfills from 'vite-plugin-node-stdlib-browser'
+
 
 export default defineConfig({
     resolve: { alias: { '@': '/src' } },
@@ -21,7 +23,7 @@ export default defineConfig({
             },
         },
     },
-    plugins: [dts()],
+    plugins: [dts(), nodePolyfills()],
     test: {
         environment: 'node',
         globals: true,
