@@ -31,7 +31,8 @@
   "exports": {
     ".": {
       "import": "./dist/vitest-fail-on-console.es.js",
-      "require": "./dist/vitest-fail-on-console.umd.js"
+      "require": "./dist/vitest-fail-on-console.umd.js",
+      "types": "./dist/index.d.ts"
     }
   },
   "types": "./dist/index.d.ts",
@@ -58,6 +59,5 @@
   "dependencies": {
     "chalk": "^5.2.0",
     "node-stdlib-browser": "^1.2.0"
-
   }
 }
