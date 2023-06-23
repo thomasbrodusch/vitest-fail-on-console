@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1](https://github.com/thomasbrodusch/vitest-fail-on-console/compare/v0.3.1...v0.4.1) (2023-06-23)
+
+### Security issues
+* Dependency vite:4.3.5 is vulnerable, safe version 4.3.9
+    
+  * CVE-2023-34092 7.5 Exposure of Sensitive Information to an Unauthorized Actor vulnerability pending CVSS allocation
+
+### Bug Fixes
+
+* typing export ([426f7ce](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/426f7ce55259eb525fcc560928acfa5780310e1b)), closes [#10](https://github.com/thomasbrodusch/vitest-fail-on-console/issues/10)
+* update index.ts to work without global option set to true ([4665ede](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/4665ede23d9d5c109f96868536ce2c60398f361b))
+
+#### Contributors: @magnattic
+
 ## [0.4.0](https://github.com/thomasbrodusch/vitest-fail-on-console/compare/v0.3.1...v0.4.0) (2023-05-06)
 
 
