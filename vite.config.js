@@ -1,7 +1,6 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-import nodePolyfills from 'vite-plugin-node-stdlib-browser'
 
 
 export default defineConfig({
@@ -13,17 +12,19 @@ export default defineConfig({
             fileName: (format) => `vitest-fail-on-console.${format}.js`,
         },
         rollupOptions: {
-            external: ['chalk', 'util'],
+            external: ['chalk', 'util', 'vitest'],
             output: {
                 globals: {
                     chalk: 'chalk',
+                    vitest: 'vitest',
+                    util: 'util'
                 },
                 sourcemap: true,
                 exports: 'named',
             },
         },
     },
-    plugins: [dts(), nodePolyfills()],
+    plugins: [dts()],
     test: {
         environment: 'node',
         globals: true,

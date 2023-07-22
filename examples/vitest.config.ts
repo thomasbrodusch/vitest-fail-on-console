@@ -6,5 +6,8 @@ export default defineConfig({
         mockReset: true,
         restoreMocks: true,
         setupFiles: ['./support.ts'],
+        deps:{
+            inline: true
+        }
     },
 });
