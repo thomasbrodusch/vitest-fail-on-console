@@ -29,6 +29,7 @@ const init = (
         shouldFailOnWarn = true,
         skipTest = undefined,
         silenceMessage = undefined,
+        afterEachDelay = undefined
     }: VitestFailOnConsoleFunction = {
         errorMessage: defaultErrorMessage,
         shouldFailOnAssert: false,
@@ -39,6 +40,7 @@ const init = (
         shouldFailOnWarn: true,
         silenceMessage: undefined,
         skipTest: undefined,
+        afterEachDelay: undefined
     }
 ) => {
     const flushUnexpectedConsoleCalls = (
@@ -127,9 +129,12 @@ const init = (
             unexpectedConsoleCallStacks.length = 0;
         });
 
-        afterEach(() => {
+        afterEach(async () => {
             if (isTestSkipped()) {
                 return;
+            }
+            if (afterEachDelay) {
+                await new Promise(resolve => setTimeout(resolve, afterEachDelay));
             }
             flushUnexpectedConsoleCalls(
                 methodName,

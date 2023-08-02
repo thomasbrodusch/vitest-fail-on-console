@@ -34,4 +34,5 @@ export type VitestFailOnConsoleFunction = {
     skipTest?: SkipTestFunction;
     errorMessage?: ErrorMessageFunction;
     silenceMessage?: SilenceMessageFunction;
+    afterEachDelay?: number;
 };
