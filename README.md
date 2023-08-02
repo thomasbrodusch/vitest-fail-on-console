@@ -188,6 +188,19 @@ failOnConsole({
 })
 ```
 
+### afterEachDelay
+
+Use this to make sure test fails even when the console warning is called after the test finished executing. This is useful for debugging flaky tests. It's recommended to turn it off for CI (or set it to a low value) as it will slow down test execution
+
+- Type: `number`
+- Default: `0`
+
+```ts
+failOnConsole({
+  afterEachDelay: !process.env.CI ? 1000 : 0,
+})
+```
+
 ## License
 
 [MIT](https://github.com/thomasbroduch/vitest-fail-on-console/blob/develop/LICENSE)
