@@ -47,6 +47,20 @@ describe('vitest-fail-on-console', () => {
             'assert-success',
             false,
         ],
+        [
+            'throw error',
+            'console.error() is called in setTimeout()',
+            { afterEachDelay: 100 },
+            'after-each-delay-failure',
+            true,
+        ],
+        [
+            'not throw error',
+            'console.error() is called in setTimeout()',
+            {},
+            'after-each-delay-success',
+            false,
+        ],
     ])(
         'should %s when %s with options %s',
         async (msgA, msgB, options, fixture, isErrorThrown) => {
