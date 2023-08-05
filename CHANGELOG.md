@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/thomasbrodusch/vitest-fail-on-console/compare/v0.4.2...v0.5.0) (2023-08-05)
+
+
+### Features
+
+* **#12:** add afterEachDelay option ([526aa1a](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/526aa1a3e3d40a77669de8bc1d33ae48dafed750)), closes [#12](https://github.com/thomasbrodusch/vitest-fail-on-console/issues/12)
+
+#### Contributors: @vojvodics
+
 ### [0.4.2](https://github.com/thomasbrodusch/vitest-fail-on-console/compare/v0.3.1...v0.4.2) (2023-07-22)
 
 
