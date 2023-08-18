@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.1](https://github.com/thomasbrodusch/vitest-fail-on-console/compare/v0.4.2...v0.5.1) (2023-08-18)
+
+
+### Bug Fixes
+
+* add vitest as a dependency ([6d5a835](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/6d5a835467270142b8265b8f6c69b02740dfedc3))
+
 ## [0.5.0](https://github.com/thomasbrodusch/vitest-fail-on-console/compare/v0.4.2...v0.5.0) (2023-08-05)
 
 
