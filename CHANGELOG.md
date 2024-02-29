@@ -2,19 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.1](https://github.com/thomasbrodusch/vitest-fail-on-console/compare/v0.6.0...v0.6.1) (2024-02-29)
+
+### Bug Fixes
+
+* **#17:** Cannot find module 'vitest-fail-on-console' ([4704b60](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/4704b608966d4fa07dbf35c787ae6b6fd88d41fe)), closes [#17](https://github.com/thomasbrodusch/vitest-fail-on-console/issues/17)
+
 ## [0.6.0](https://github.com/thomasbrodusch/vitest-fail-on-console/compare/v0.4.2...v0.6.0) (2024-02-26)
 
 ### Features
 * [SECURITY] update packages.json dependancies ([3e55e97](https://github.com/thomasbrodusch/vitest-fail-on-console/commit/3e55e97181121ace8b90ca4fbccbd5d927ea47f1))
 
-### Features
-
-* **#12:** add afterEachDelay option ([526aa1a](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/526aa1a3e3d40a77669de8bc1d33ae48dafed750)), closes [#12](https://github.com/thomasbrodusch/vitest-fail-on-console/issues/12)
-
-
-### Bug Fixes
-
-* add vitest as a dependency ([6d5a835](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/6d5a835467270142b8265b8f6c69b02740dfedc3))
 
 ### [0.5.1](https://github.com/thomasbrodusch/vitest-fail-on-console/compare/v0.4.2...v0.5.1) (2023-08-18)
 
