@@ -7,7 +7,7 @@
     "sourceMap": true,
     "types": ["vitest/globals"],
     "paths": {
-      "@/*": ["src/*"]
+      "*": ["src/*"],
     },
     "moduleResolution": "node"
   },
