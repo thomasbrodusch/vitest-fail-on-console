@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.2](https://github.com/thomasbrodusch/vitest-fail-on-console/compare/v0.6.1...v0.6.2) (2024-02-29)
+
+
+### Bug Fixes
+
+* **#17:** Cannot find module 'vitest-fail-on-console' ([9a60253](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/9a6025381657a5af7820c6babad8cea417357268)), closes [#17](https://github.com/thomasbrodusch/vitest-fail-on-console/issues/17)
+
+
 ### [0.6.1](https://github.com/thomasbrodusch/vitest-fail-on-console/compare/v0.6.0...v0.6.1) (2024-02-29)
 
 ### Bug Fixes
