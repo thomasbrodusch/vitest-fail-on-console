@@ -24,7 +24,7 @@ export default defineConfig({
             },
         },
     },
-    plugins: [dts()],
+    plugins: [dts({insertTypesEntry: true,})],
     test: {
         environment: 'node',
         globals: true,

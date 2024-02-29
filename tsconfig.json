@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "src",
     "lib": ["es2021", "dom"],
     "module": "esnext",
     "target": "es6",
     "sourceMap": true,
-    "types": ["vitest/globals"],
+    "types": ["vitest/globals", "src/types"],
     "paths": {
       "*": ["src/*"],
     },
