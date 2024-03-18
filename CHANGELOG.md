@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.3](https://github.com/thomasbrodusch/vitest-fail-on-console/compare/v0.4.2...v0.6.3) (2024-03-18)
+
+
+### Bug Fixes
+* Type error in 0.6.2 ([f4e4a210](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/f4e4a2104265c46e8a5aa0c3c95e1b2f2228ce3f)), closes [#20](https://github.com/thomasbrodusch/vitest-fail-on-console/issues/20)
+* add imports from vitest ([1cea4eb](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/1cea4ebfb85e93c8a6b227869082948ca6578878)), closes [#18](https://github.com/thomasbrodusch/vitest-fail-on-console/issues/18)
+
 ### [0.6.2](https://github.com/thomasbrodusch/vitest-fail-on-console/compare/v0.6.1...v0.6.2) (2024-02-29)
 
 
