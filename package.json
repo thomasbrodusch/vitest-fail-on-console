@@ -49,7 +49,7 @@
     "husky": "8.0.3",
     "prettier": "3.2.5",
     "standard-version": "9.5.0",
-    "typescript": "4.9.4",
+    "typescript": "5.4.5",
     "vite": "5.2.10",
     "vite-plugin-dts": "3.7.3",
     "vitest": "1.5.0"
