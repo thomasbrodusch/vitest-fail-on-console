@@ -30,9 +30,8 @@
   ],
   "exports": {
     ".": {
-      "import": "./dist/vitest-fail-on-console.es.js",
-      "require": "./dist/vitest-fail-on-console.umd.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/vitest-fail-on-console.es.js"
     }
   },
   "types": "./dist/index.d.ts",
