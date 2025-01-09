@@ -28,6 +28,7 @@
   "files": [
     "dist"
   ],
+  "main": "./dist/vitest-fail-on-console.es.js",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
