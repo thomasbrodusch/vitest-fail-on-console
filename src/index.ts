@@ -1,13 +1,8 @@
-import { beforeEach, afterEach, expect } from "vitest";
+import { beforeEach, afterEach, expect } from 'vitest';
 import * as util from 'util';
 import chalk from 'chalk';
-import {
-    ConsoleCallStacks,
-    ConsoleMethod,
-    VitestFailOnConsoleFunction,
-} from './types';
+import { ConsoleMethod, VitestFailOnConsoleFunction } from './types';
 
-const LINE_RETURN = '\n';
 const defaultErrorMessage = (methodName: ConsoleMethod) =>
     `vitest-fail-on-console > Expected test not to call ${chalk.bold(
         `console.${methodName}()`
@@ -29,7 +24,7 @@ const init = (
         shouldFailOnWarn = true,
         skipTest = undefined,
         silenceMessage = undefined,
-        afterEachDelay = undefined
+        afterEachDelay = undefined,
     }: VitestFailOnConsoleFunction = {
         errorMessage: defaultErrorMessage,
         shouldFailOnAssert: false,
@@ -40,60 +35,24 @@ const init = (
         shouldFailOnWarn: true,
         silenceMessage: undefined,
         skipTest: undefined,
-        afterEachDelay: undefined
+        afterEachDelay: undefined,
     }
 ) => {
-    const flushUnexpectedConsoleCalls = (
-        methodName: ConsoleMethod,
-        unexpectedConsoleCallStacks: ConsoleCallStacks
-    ) => {
-        if (unexpectedConsoleCallStacks.length) {
-            const messages = unexpectedConsoleCallStacks.map(
-                ([stack, message]) => {
-                    const stackLines = stack.split(LINE_RETURN);
-                    return (
-                        `${chalk.red(message)}${LINE_RETURN}` +
-                        `${stackLines
-                            .map((line, index) => {
-                                if (index === stackLines.length - 1) {
-                                    return chalk.white(line);
-                                }
-                                return chalk.gray(line);
-                            })
-                            .join(LINE_RETURN)}`
-                    );
-                }
-            );
-
-            const message = errorMessage(methodName);
-            const doubleLineReturn = `${LINE_RETURN}${LINE_RETURN}`;
-            throw new Error(
-                `${message}${doubleLineReturn}${messages.join(
-                    doubleLineReturn
-                )}`
-            );
-        }
+    const flushUnexpectedConsoleCalls = (methodName: ConsoleMethod) => {
+        throw new Error(errorMessage(methodName));
     };
 
     const patchConsoleMethod = (methodName: ConsoleMethod) => {
-        const unexpectedConsoleCallStacks: ConsoleCallStacks = [];
+        let hadConsoleCall = false;
 
-        const captureMessage = (format: unknown, ...args) => {
+        const handleConsoleCall = (format: unknown, ...args) => {
             const message = util.format(format, ...args);
             if (silenceMessage && silenceMessage(message, methodName)) {
                 return;
             }
 
-            // Capture the call stack now, so we can warn about it later.
-            // The call stack has helpful information for the test author.
-            // Don't throw yet though b'c it might be accidentally caught and suppressed.
-            const { stack } = new Error();
-            if (stack) {
-                unexpectedConsoleCallStacks.push([
-                    stack.slice(stack.indexOf(LINE_RETURN) + 1),
-                    message,
-                ]);
-            }
+            hadConsoleCall = true;
+            originalMethod(message);
         };
 
         const newAssertMethod = (
@@ -104,13 +63,13 @@ const init = (
             if (assertion) {
                 return;
             }
-            captureMessage(format, ...args);
+            handleConsoleCall(format, ...args);
         };
 
         const newMethod =
             methodName === ConsoleMethod.Assert
                 ? newAssertMethod
-                : captureMessage;
+                : handleConsoleCall;
 
         const originalMethod = console[methodName];
 
@@ -126,7 +85,7 @@ const init = (
                 return;
             }
             console[methodName] = newMethod; // eslint-disable-line no-console
-            unexpectedConsoleCallStacks.length = 0;
+            hadConsoleCall = false;
         });
 
         afterEach(async () => {
@@ -134,12 +93,13 @@ const init = (
                 return;
             }
             if (afterEachDelay) {
-                await new Promise(resolve => setTimeout(resolve, afterEachDelay));
+                await new Promise((resolve) =>
+                    setTimeout(resolve, afterEachDelay)
+                );
             }
-            flushUnexpectedConsoleCalls(
-                methodName,
-                unexpectedConsoleCallStacks
-            );
+            if (hadConsoleCall) {
+                flushUnexpectedConsoleCalls(methodName);
+            }
             console[methodName] = originalMethod;
         });
     };

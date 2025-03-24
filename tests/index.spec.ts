@@ -10,7 +10,7 @@ describe('vitest-fail-on-console', () => {
         const configFilePath = `${fixtureDirectory}/vitest.config.ts`;
         const cmd = `./node_modules/.bin/vitest related ${testFilePath} -c ${configFilePath} --run`;
         return new Promise((resolve) => {
-            exec(cmd, (error, stdout, stderr) => {
+            exec(cmd, (_error, _stdout, stderr) => {
                 resolve({ stderr });
             });
         });

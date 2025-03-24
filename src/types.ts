@@ -22,8 +22,6 @@ export enum ConsoleMethod {
     Warn = 'warn',
 }
 
-export type ConsoleCallStacks = [string, string][];
-
 export type VitestFailOnConsoleFunction = {
     shouldFailOnAssert?: boolean;
     shouldFailOnDebug?: boolean;
