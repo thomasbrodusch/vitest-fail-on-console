@@ -136,6 +136,32 @@ Use this to make a test fail when a `console.warn()` is logged.
 - Type: `boolean`
 - Default: `true`
 
+### allowMessage
+
+```ts
+// signature
+type allowMessage = (
+  message: string,
+  methodName: 'assert' | 'debug' | 'error' | 'info' | 'log' | 'warn',
+) => boolean
+```
+
+This function is called for every console method supported by this utility.
+If `true` is returned, the message will show in the console and the test won't fail.
+
+Example:
+
+```ts
+failOnConsole({
+  allowMessage: (errorMessage) => {
+    if (/An expected error/.test(errorMessage)) {
+      return true
+    }
+    return false
+  },
+})
+```
+
 ### silenceMessage
 
 ```ts

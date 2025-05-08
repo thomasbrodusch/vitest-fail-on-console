@@ -8,6 +8,11 @@ type SkipTestFunction = ({
 
 type ErrorMessageFunction = (methodName: ConsoleMethod) => string;
 
+type AllowMessageFunction = (
+    message: string,
+    methodName: ConsoleMethod
+) => boolean;
+
 type SilenceMessageFunction = (
     message: string,
     methodName: ConsoleMethod
@@ -33,6 +38,7 @@ export type VitestFailOnConsoleFunction = {
     shouldFailOnWarn?: boolean;
     skipTest?: SkipTestFunction;
     errorMessage?: ErrorMessageFunction;
+    allowMessage?: AllowMessageFunction;
     silenceMessage?: SilenceMessageFunction;
     afterEachDelay?: number;
 };

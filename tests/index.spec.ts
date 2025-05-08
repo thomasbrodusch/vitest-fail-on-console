@@ -79,6 +79,24 @@ describe('vitest-fail-on-console', () => {
             'silence-message-true',
             false,
         ],
+        [
+            'throw error',
+            'console.error() is called',
+            {
+                allowMessage: () => false,
+            },
+            'allow-message-false',
+            true,
+        ],
+        [
+            'not throw error',
+            'console.error() is called',
+            {
+                allowMessage: () => true,
+            },
+            'allow-message-true',
+            false,
+        ],
     ])(
         'should %s when %s with options %s',
         async (msgA, msgB, options, fixture, isErrorThrown) => {

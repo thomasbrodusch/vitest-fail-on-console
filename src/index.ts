@@ -28,6 +28,7 @@ const init = (
         shouldFailOnLog = false,
         shouldFailOnWarn = true,
         skipTest = undefined,
+        allowMessage = undefined,
         silenceMessage = undefined,
         afterEachDelay = undefined
     }: VitestFailOnConsoleFunction = {
@@ -38,6 +39,7 @@ const init = (
         shouldFailOnInfo: false,
         shouldFailOnLog: false,
         shouldFailOnWarn: true,
+        allowMessage: undefined,
         silenceMessage: undefined,
         skipTest: undefined,
         afterEachDelay: undefined
@@ -81,6 +83,11 @@ const init = (
         const captureMessage = (format: unknown, ...args) => {
             const message = util.format(format, ...args);
             if (silenceMessage && silenceMessage(message, methodName)) {
+                return;
+            }
+
+            if (allowMessage && allowMessage(message, methodName)) {
+                originalMethod(format, ...args);
                 return;
             }
 
