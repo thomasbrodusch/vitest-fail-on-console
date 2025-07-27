@@ -26,7 +26,8 @@
   "license": "MIT",
   "type": "module",
   "files": [
-    "dist"
+    "dist",
+    "!dist/tests"
   ],
   "main": "./dist/vitest-fail-on-console.es.js",
   "exports": {
