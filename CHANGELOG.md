@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.8.0](https://github.com/thomasbrodusch/vitest-fail-on-console/compare/v0.7.0...v0.8.0) (2025-07-27)
+
+
+### Features
+
+* add allowMessage option ([f15c318](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/f15c318ed9a29a5a5da4e74fba074dc597f1c0ed))
+
+
+### Bug Fixes
+
+* **#79:** unpinned dependency of chalk ([42024d1](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/42024d1e5b2e82184b68fb750889c6eb09cd84ef)), closes [#79](https://github.com/thomasbrodusch/vitest-fail-on-console/issues/79)
+* add main to package.json for backward compatibility ([3518a15](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/3518a15149885d056b5666ecc39c8195debf6bb1))
+
 ### [0.7.1](https://github.com/thomasbrodusch/vitest-fail-on-console/compare/v0.7.0...v0.7.1) (2024-09-02)
 
 
