@@ -1,4 +1,4 @@
-import { beforeEach, afterEach, expect } from "vitest";
+import { beforeEach, afterEach, expect } from 'vitest';
 import * as util from 'util';
 import chalk from 'chalk';
 import {
@@ -29,7 +29,7 @@ const init = (
         shouldFailOnWarn = true,
         skipTest = undefined,
         silenceMessage = undefined,
-        afterEachDelay = undefined
+        afterEachDelay = undefined,
     }: VitestFailOnConsoleFunction = {
         errorMessage: defaultErrorMessage,
         shouldFailOnAssert: false,
@@ -40,7 +40,7 @@ const init = (
         shouldFailOnWarn: true,
         silenceMessage: undefined,
         skipTest: undefined,
-        afterEachDelay: undefined
+        afterEachDelay: undefined,
     }
 ) => {
     const flushUnexpectedConsoleCalls = (
@@ -83,6 +83,8 @@ const init = (
             if (silenceMessage && silenceMessage(message, methodName)) {
                 return;
             }
+
+            originalMethod(message);
 
             // Capture the call stack now, so we can warn about it later.
             // The call stack has helpful information for the test author.
@@ -134,7 +136,9 @@ const init = (
                 return;
             }
             if (afterEachDelay) {
-                await new Promise(resolve => setTimeout(resolve, afterEachDelay));
+                await new Promise((resolve) =>
+                    setTimeout(resolve, afterEachDelay)
+                );
             }
             flushUnexpectedConsoleCalls(
                 methodName,
