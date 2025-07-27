@@ -125,7 +125,7 @@ const init = (
             if (isTestSkipped()) {
                 return;
             }
-            console[methodName] = newMethod; // eslint-disable-line no-console
+            console[methodName] = newMethod;
             unexpectedConsoleCallStacks.length = 0;
         });
 
