@@ -30,7 +30,8 @@ const init = (
         skipTest = undefined,
         allowMessage = undefined,
         silenceMessage = undefined,
-        afterEachDelay = undefined
+        afterEachDelay = undefined,
+        shouldPrintMessage = false
     }: VitestFailOnConsoleFunction = {
         errorMessage: defaultErrorMessage,
         shouldFailOnAssert: false,
@@ -89,6 +90,10 @@ const init = (
             if (allowMessage && allowMessage(message, methodName)) {
                 originalMethod(format, ...args);
                 return;
+            }
+
+            if (shouldPrintMessage) {
+                originalMethod(format, ...args)
             }
 
             // Capture the call stack now, so we can warn about it later.

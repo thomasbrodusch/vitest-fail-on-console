@@ -97,6 +97,26 @@ describe('vitest-fail-on-console', () => {
             'allow-message-true',
             false,
         ],
+        [
+            'throw error',
+            'console.error() is called',
+            {
+                shouldFailOnError: () => true,
+                shouldPrintMessage: () => true,
+            },
+            'should-print-message-error',
+            true,
+        ],
+        [
+            'not throw error',
+            'console.error() is called',
+            {
+                shouldFailOnError: () => false,
+                shouldPrintMessage: () => true,
+            },
+            'should-print-message-no-error',
+            false,
+        ],
     ])(
         'should %s when %s with options %s',
         async (msgA, msgB, options, fixture, isErrorThrown) => {

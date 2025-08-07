@@ -41,4 +41,5 @@ export type VitestFailOnConsoleFunction = {
     allowMessage?: AllowMessageFunction;
     silenceMessage?: SilenceMessageFunction;
     afterEachDelay?: number;
+    shouldPrintMessage?: boolean;
 };

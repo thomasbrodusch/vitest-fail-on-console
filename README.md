@@ -227,6 +227,19 @@ failOnConsole({
 })
 ```
 
+
+### shouldPrintMessage
+Use this to print the message immediately when called not awaiting the test to finish. This is useful to show the message if there are other or earlier test failures which will result in the fail on console error to be hidden by vitest.
+
+- Type: `boolean`
+- Default: `false`
+- 
+```ts
+failOnConsole({
+    shouldPrintMessage: true,
+})
+```
+
 ## License
 
 [MIT](https://github.com/thomasbroduch/vitest-fail-on-console/blob/develop/LICENSE)
