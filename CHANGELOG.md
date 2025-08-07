@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.9.0](https://github.com/thomasbrodusch/vitest-fail-on-console/compare/v0.7.0...v0.9.0) (2025-08-07)
+
+
+### Features
+
+* add shouldPrintMessage option ([95cb05b](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/95cb05bdf086fdd5812217ac32fb48570ae22f7c))
+
+### Chores
+
+* do not publish test files ([969d933d](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/969d933d29255f15e6f18324ce7a9d7b6498dd90))
+
 ## [0.8.0](https://github.com/thomasbrodusch/vitest-fail-on-console/compare/v0.7.0...v0.8.0) (2025-07-27)
 
 

@@ -233,7 +233,6 @@ Use this to print the message immediately when called not awaiting the test to f
 
 - Type: `boolean`
 - Default: `false`
-- 
 ```ts
 failOnConsole({
     shouldPrintMessage: true,
