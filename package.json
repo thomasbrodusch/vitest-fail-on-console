@@ -6,7 +6,8 @@
     "prebuild": "rm -rf dist",
     "build": "vite build",
     "lint": "yarn eslint .",
-    "test": "vitest related ./tests/index.spec.ts --run",
+    "test": "yarn playwright install && yarn test:only",
+    "test:only": "vitest related ./tests/index.spec.ts --run",
     "release": "standard-version",
     "release:patch": "standard-version --release-as patch",
     "release:minor": "standard-version --release-as minor",
@@ -45,9 +46,11 @@
     "@commitlint/cli": "19.8.1",
     "@commitlint/config-conventional": "19.8.1",
     "@eslint/js": "^9.32.0",
+    "@vitest/browser": "3.2.4",
     "eslint": "^9.32.0",
     "globals": "^16.3.0",
     "husky": "9.1.7",
+    "playwright": "^1.55.0",
     "prettier": "3.6.2",
     "standard-version": "9.5.0",
     "typescript": "5.8.3",
@@ -60,6 +63,7 @@
     "chalk": "^5.4.1"
   },
   "peerDependencies": {
+    "@vitest/util": ">=0.26.2",
     "vite": ">=4.5.2",
     "vitest": ">=0.26.2"
   }
