@@ -25,7 +25,6 @@ export default defineConfig({
     },
     plugins: [dts({ insertTypesEntry: true })],
     test: {
-        environment: 'node',
         globals: true,
         mockReset: true,
         restoreMocks: true,

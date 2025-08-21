@@ -4,128 +4,131 @@ describe('vitest-fail-on-console', () => {
     const errorThrownMessage = () =>
         `vitest-fail-on-console > Expected test not to call`;
 
-    const runFixture = async (fixtureName): Promise<{ stderr: string }> => {
+    const runFixture = async (fixtureName: string, args: string): Promise<{ stderr: string }> => {
         const fixtureDirectory = `./tests/fixtures/${fixtureName}/`;
         const testFilePath = `${fixtureDirectory}/index.spec.ts`;
         const configFilePath = `${fixtureDirectory}/vitest.config.ts`;
-        const cmd = `./node_modules/.bin/vitest related ${testFilePath} -c ${configFilePath} --run`;
+        const cmd = `./node_modules/.bin/vitest related ${testFilePath} -c ${configFilePath} --run ${args}`;
         return new Promise((resolve) => {
             exec(cmd, (error, stdout, stderr) => {
                 resolve({ stderr });
             });
         });
     };
+    describe.each(["", "--browser.headless"] as const)("with additional args \"%s\"", (args) => {
+        it.each([
+            ['throw error', 'console.error() is called', {}, 'error', true],
 
-    it.each([
-        ['throw error', 'console.error() is called', {}, 'error', true],
+            [
+                'not throw error',
+                'console.error() is called',
+                { shouldFailOnError: false },
+                'error-disabled',
+                false,
+            ],
+            [
+                'not throw error',
+                'console.error() is called',
+                { shouldFailOnError: true, skipTest: '/pattern/' },
+                'error-skip-test',
+                false,
+            ],
+            [
+                'throw error',
+                'console.assert() is called with a failing assertion ',
+                { shouldFailOnAssert: true },
+                'assert-failure',
+                true,
+            ],
+            [
+                'not throw error',
+                'console.assert() is called with a passing assertion',
+                { shouldFailOnAssert: true },
+                'assert-success',
+                false,
+            ],
+            [
+                'throw error',
+                'console.error() is called in setTimeout()',
+                { afterEachDelay: 100 },
+                'after-each-delay-failure',
+                true,
+            ],
+            [
+                'not throw error',
+                'console.error() is called in setTimeout()',
+                {},
+                'after-each-delay-success',
+                false,
+            ],
+            [
+                'throw error',
+                'console.error() is called',
+                {
+                    silenceMessage: () => false,
+                },
+                'silence-message-false',
+                true,
+            ],
+            [
+                'not throw error',
+                'console.error() is called',
+                {
+                    silenceMessage: () => true,
+                },
+                'silence-message-true',
+                false,
+            ],
+            [
+                'throw error',
+                'console.error() is called',
+                {
+                    allowMessage: () => false,
+                },
+                'allow-message-false',
+                true,
+            ],
+            [
+                'not throw error',
+                'console.error() is called',
+                {
+                    allowMessage: () => true,
+                },
+                'allow-message-true',
+                false,
+            ],
+            [
+                'throw error',
+                'console.error() is called',
+                {
+                    shouldFailOnError: () => true,
+                    shouldPrintMessage: () => true,
+                },
+                'should-print-message-error',
+                true,
+            ],
+            [
+                'not throw error',
+                'console.error() is called',
+                {
+                    shouldFailOnError: () => false,
+                    shouldPrintMessage: () => true,
+                },
+                'should-print-message-no-error',
+                false,
+            ],
+        ])(
+            'should %s when %s with options %s',
+            async (msgA, msgB, options, fixture, isErrorThrown) => {
+                const { stderr } = await runFixture(fixture, args);
+                expect(stderr).toEqual(
+                    isErrorThrown
+                        ? expect.stringContaining(errorThrownMessage())
+                        : expect.not.stringContaining(errorThrownMessage())
+                );
+            }
+        );
 
-        [
-            'not throw error',
-            'console.error() is called',
-            { shouldFailOnError: false },
-            'error-disabled',
-            false,
-        ],
-        [
-            'not throw error',
-            'console.error() is called',
-            { shouldFailOnError: true, skipTest: '/pattern/' },
-            'error-skip-test',
-            false,
-        ],
-        [
-            'throw error',
-            'console.assert() is called with a failing assertion ',
-            { shouldFailOnAssert: true },
-            'assert-failure',
-            true,
-        ],
-        [
-            'not throw error',
-            'console.assert() is called with a passing assertion',
-            { shouldFailOnAssert: true },
-            'assert-success',
-            false,
-        ],
-        [
-            'throw error',
-            'console.error() is called in setTimeout()',
-            { afterEachDelay: 100 },
-            'after-each-delay-failure',
-            true,
-        ],
-        [
-            'not throw error',
-            'console.error() is called in setTimeout()',
-            {},
-            'after-each-delay-success',
-            false,
-        ],
-        [
-            'throw error',
-            'console.error() is called',
-            {
-                silenceMessage: () => false,
-            },
-            'silence-message-false',
-            true,
-        ],
-        [
-            'not throw error',
-            'console.error() is called',
-            {
-                silenceMessage: () => true,
-            },
-            'silence-message-true',
-            false,
-        ],
-        [
-            'throw error',
-            'console.error() is called',
-            {
-                allowMessage: () => false,
-            },
-            'allow-message-false',
-            true,
-        ],
-        [
-            'not throw error',
-            'console.error() is called',
-            {
-                allowMessage: () => true,
-            },
-            'allow-message-true',
-            false,
-        ],
-        [
-            'throw error',
-            'console.error() is called',
-            {
-                shouldFailOnError: () => true,
-                shouldPrintMessage: () => true,
-            },
-            'should-print-message-error',
-            true,
-        ],
-        [
-            'not throw error',
-            'console.error() is called',
-            {
-                shouldFailOnError: () => false,
-                shouldPrintMessage: () => true,
-            },
-            'should-print-message-no-error',
-            false,
-        ],
-    ])(
-        'should %s when %s with options %s',
-        async (msgA, msgB, options, fixture, isErrorThrown) => {
-            const { stderr } = await runFixture(fixture);
-            expect(stderr).toEqual(
-                isErrorThrown
-                    ? expect.stringContaining(errorThrownMessage())
-                    : expect.not.stringContaining(errorThrownMessage())
-            );
-        }
-    );
+    });
+
 });

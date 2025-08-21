@@ -1,6 +1,6 @@
 import { beforeEach, afterEach, expect } from "vitest";
-import * as util from 'util';
 import chalk from 'chalk';
+import { format as vitestFormat } from "@vitest/utils"
 import {
     ConsoleCallStacks,
     ConsoleMethod,
@@ -82,7 +82,7 @@ const init = (
         const unexpectedConsoleCallStacks: ConsoleCallStacks = [];
 
         const captureMessage = (format: unknown, ...args) => {
-            const message = util.format(format, ...args);
+            const message = vitestFormat(format, ...args);
             if (silenceMessage && silenceMessage(message, methodName)) {
                 return;
             }
