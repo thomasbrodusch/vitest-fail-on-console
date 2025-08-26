@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.10.0](https://github.com/thomasbrodusch/vitest-fail-on-console/compare/v0.7.0...v0.10.0) (2025-08-26)
+
+
+### Features
+
+* add allowMessage option ([f15c318](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/f15c318ed9a29a5a5da4e74fba074dc597f1c0ed))
+* add shouldPrintMessage option ([95cb05b](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/95cb05bdf086fdd5812217ac32fb48570ae22f7c))
+
+
+### Bug Fixes
+
+* **#115:** add vitest browser mode ([89cc221](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/89cc2213f016691a2d227a35dd93662bed746873)), closes [#115](https://github.com/thomasbrodusch/vitest-fail-on-console/issues/115) [#115](https://github.com/thomasbrodusch/vitest-fail-on-console/issues/115)
+* **#59:** typeerror - default is not a function ([f45eecd](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/f45eecdd5b661e93b663c1b851798ed27eaad03b)), closes [#59](https://github.com/thomasbrodusch/vitest-fail-on-console/issues/59) [/github.com/vitest-dev/vitest/issues/6352#issuecomment-2294477456](https://github.com/thomasbrodusch//github.com/vitest-dev/vitest/issues/6352/issues/issuecomment-2294477456)
+* **#79:** unpinned dependency of chalk ([42024d1](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/42024d1e5b2e82184b68fb750889c6eb09cd84ef)), closes [#79](https://github.com/thomasbrodusch/vitest-fail-on-console/issues/79)
+* add main to package.json for backward compatibility ([3518a15](https://github.com/thomasbrodusch/vitest-fail-on-console/commits/3518a15149885d056b5666ecc39c8195debf6bb1))
+
 ## [0.9.0](https://github.com/thomasbrodusch/vitest-fail-on-console/compare/v0.7.0...v0.9.0) (2025-08-07)
 
 
