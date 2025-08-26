@@ -63,7 +63,7 @@
     "chalk": "^5.4.1"
   },
   "peerDependencies": {
-    "@vitest/util": ">=0.26.2",
+    "@vitest/utils": ">=0.26.2",
     "vite": ">=4.5.2",
     "vitest": ">=0.26.2"
   }
