@@ -6,9 +6,6 @@
     "target": "es6",
     "sourceMap": true,
     "types": ["vitest/globals"],
-    "paths": {
-      "@": ["src/*"],
-    },
     "moduleResolution": "nodenext"
   },
   "include": ["src/**/*.ts", "tests/**/*.ts"],
