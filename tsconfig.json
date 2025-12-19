@@ -2,14 +2,11 @@
   "compilerOptions": {
     "baseUrl": "src",
     "lib": ["es2021", "dom"],
-    "module": "esnext",
+    "module": "nodenext",
     "target": "es6",
     "sourceMap": true,
-    "types": ["vitest/globals", "src/types"],
-    "paths": {
-      "@": ["src/*"],
-    },
-    "moduleResolution": "node"
+    "types": ["vitest/globals"],
+    "moduleResolution": "nodenext"
   },
   "include": ["src/**/*.ts", "tests/**/*.ts"],
   "exclude": [

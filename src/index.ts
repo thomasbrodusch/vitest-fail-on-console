@@ -5,7 +5,7 @@ import {
     ConsoleCallStacks,
     ConsoleMethod,
     VitestFailOnConsoleFunction,
-} from './types';
+} from './types.js';
 
 const LINE_RETURN = '\n';
 const defaultErrorMessage = (methodName: ConsoleMethod) =>

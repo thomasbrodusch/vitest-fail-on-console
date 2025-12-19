@@ -1,4 +1,4 @@
-import vitestFailOnConsole from '../../../src/index';
+import vitestFailOnConsole from '../../../src/index.js';
 vitestFailOnConsole({
     shouldFailOnError: true,
     skipTest: ({ testPath }) =>
