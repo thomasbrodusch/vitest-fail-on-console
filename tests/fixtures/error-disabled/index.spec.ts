@@ -1,4 +1,4 @@
-import consoleError from './index';
+import consoleError from './index.js';
 import { describe, it, expect } from 'vitest';
 describe('console.error disabled', () => {
     it('does throw', () => {
