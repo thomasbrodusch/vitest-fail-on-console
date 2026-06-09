@@ -4,16 +4,17 @@ import { format as vitestFormat } from "@vitest/utils"
 import {
     ConsoleCallStacks,
     ConsoleMethod,
+    ErrorMessageFunction,
     VitestFailOnConsoleFunction,
 } from './types';
 
 const LINE_RETURN = '\n';
-const defaultErrorMessage = (methodName: ConsoleMethod) =>
-    `vitest-fail-on-console > Expected test not to call ${chalk.bold(
+const defaultErrorMessage: ErrorMessageFunction = (methodName, bold) =>
+    `vitest-fail-on-console > Expected test not to call ${bold(
         `console.${methodName}()`
     )}.
-    If the ${methodName} is expected, test for it explicitly by mocking it out using: 
-    ${chalk.bold(
+    If the ${methodName} is expected, test for it explicitly by mocking it out using:
+    ${bold(
         `vi.spyOn(console, '${methodName}').mockImplementation(() => {}) `
     )}
     and test that the warning occurs.`;
@@ -68,7 +69,7 @@ const init = (
                 }
             );
 
-            const message = errorMessage(methodName);
+            const message = errorMessage(methodName, chalk.bold);
             const doubleLineReturn = `${LINE_RETURN}${LINE_RETURN}`;
             throw new Error(
                 `${message}${doubleLineReturn}${messages.join(
