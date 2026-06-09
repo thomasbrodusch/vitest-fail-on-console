@@ -6,7 +6,7 @@ type SkipTestFunction = ({
     testPath?: string;
 }) => boolean;
 
-type ErrorMessageFunction = (methodName: ConsoleMethod) => string;
+export type ErrorMessageFunction = (methodName: ConsoleMethod, bold: (text: string) => string) => string;
 
 type AllowMessageFunction = (
     message: string,
