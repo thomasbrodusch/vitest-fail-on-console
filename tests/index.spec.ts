@@ -1,8 +1,10 @@
 import { exec } from 'child_process';
 
 describe('vitest-fail-on-console', () => {
-    const errorThrownMessage = () =>
-        `vitest-fail-on-console > Expected test not to call`;
+    const errorThrownMessage = (fixture?: string) =>
+        fixture === 'custom-error-message'
+            ? 'CUSTOM_ERROR_MESSAGE:'
+            : 'vitest-fail-on-console > Expected test not to call';
 
     const runFixture = async (fixtureName: string, args: string): Promise<{ stderr: string }> => {
         const fixtureDirectory = `./tests/fixtures/${fixtureName}/`;
@@ -117,14 +119,24 @@ describe('vitest-fail-on-console', () => {
                 'should-print-message-no-error',
                 false,
             ],
+            [
+                'throw error',
+                'console.error() is called',
+                {
+                    errorMessage: (methodName, bold) =>
+                        `CUSTOM_ERROR_MESSAGE: do not call ${bold(`console.${methodName}()`)}`,
+                },
+                'custom-error-message',
+                true,
+            ],
         ])(
             'should %s when %s with options %s',
             async (msgA, msgB, options, fixture, isErrorThrown) => {
                 const { stderr } = await runFixture(fixture, args);
                 expect(stderr).toEqual(
                     isErrorThrown
-                        ? expect.stringContaining(errorThrownMessage())
-                        : expect.not.stringContaining(errorThrownMessage())
+                        ? expect.stringContaining(errorThrownMessage(fixture))
+                        : expect.not.stringContaining(errorThrownMessage(fixture))
                 );
             }
         );

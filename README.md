@@ -23,7 +23,7 @@ There is several changes between `jest-fail-on-console` and `vitest-fail-on-cons
 - refactoring of the whole codebase
 - refactoring of test/specs
 
-This repository has been developed and publish to keep and maintain a Vitest version 
+This repository has been developed and publish to keep and maintain a Vitest version
 of the original idea behind `jest-fail-on-console` credited at the bottom of this file.
 
 ## Install
@@ -88,9 +88,9 @@ Use this if you want to override the default error message of this library.
 
 ```ts
 // signature
-type errorMessage = (
+type ErrorMessageFunction = (
   methodName: 'assert' | 'debug' | 'error' | 'info' | 'log' | 'warn',
-  bold: (string: string) => string
+  bold: (text: string) => string
 ) => string
 ```
 
@@ -208,7 +208,7 @@ failOnConsole({
     if (ignoreNameList.includes(testName)) {
       return true
     }
-    
+
     return false
   },
 })
